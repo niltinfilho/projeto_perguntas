@@ -1,67 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+main() {
+  runApp(new PerguntaApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
+// a classe "PerguntaApp" herda a classe "StatelessWidget", ou seja, possui essas caracteristicas
+class PerguntaApp extends StatelessWidget {
+  // a funcao "build" recebe um parametro e retorna um widget
   Widget build(BuildContext context) {
+    // esta retornando uma nova instancia da classe "MaterialApp"
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 0, 255, 17)),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Meu contador em Flutter'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Voce pressionou o botao esse tanto de vezes:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      // a classe "MaterialApp" recebe varios parametros, dentre eles o "Text"
+      home: Text('Ola, Flutter!'),
     );
   }
 }
