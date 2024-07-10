@@ -7,11 +7,14 @@ import 'package:flutter/material.dart';
 // esse eh o topo da arvore de componentes no flutter, todos os widgets estao abaixo do "PerguntaApp"
 main() => runApp(PerguntaApp());
 
-// a classe "PerguntaApp" herda a classe "StatelessWidget", ou seja, possui essas caracteristicas
-class PerguntaApp extends StatelessWidget {
+class PerguntaAppState extends State<PerguntaApp> {
+  var perguntaSelecionada = 0;
 
   void responder() {
-    print('Pergunta respondida!');
+    setState(() {
+      perguntaSelecionada++;
+    });
+    print(perguntaSelecionada);
   }
 
   @override
@@ -30,7 +33,7 @@ class PerguntaApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(perguntas[0]),
+            Text(perguntas[perguntaSelecionada]),
             ElevatedButton(
               onPressed: responder,
               child: Text('Resposta 1'),
@@ -47,5 +50,12 @@ class PerguntaApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// a classe "PerguntaApp" herda a classe "StatelessWidget", ou seja, possui essas caracteristicas
+class PerguntaApp extends StatefulWidget {
+  PerguntaAppState createState() {
+    return PerguntaAppState();
   }
 }
