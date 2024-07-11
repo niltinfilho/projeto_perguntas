@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'questao.dart';
 
+// esse eh o topo da arvore de componentes no flutter, todos os widgets estao abaixo do "PerguntaApp"
 // main() {
 //   runApp(new PerguntaApp());
 // }
-
-// esse eh o topo da arvore de componentes no flutter, todos os widgets estao abaixo do "PerguntaApp"
 main() => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
@@ -33,7 +33,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Text(perguntas[_perguntaSelecionada]),
+            Questao(perguntas[_perguntaSelecionada]),
             ElevatedButton(
               onPressed: _responder,
               child: Text('Resposta 1'),
