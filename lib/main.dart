@@ -15,7 +15,6 @@ class _PerguntaAppState extends State<PerguntaApp> {
     setState(() {
       _perguntaSelecionada++;
     });
-    print(_perguntaSelecionada);
   }
 
   @override
@@ -24,7 +23,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
     final List<Map<String, Object>> perguntas = [
       {
         'texto': 'Qual eh a sua cor favorita?',
-        'respostas': ['Preto', 'Vermelhoo', 'Verde', 'Branco'],
+        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
       },
       {
         'texto': 'Qual eh o seu animal favorito?',
@@ -36,11 +35,11 @@ class _PerguntaAppState extends State<PerguntaApp> {
       }
     ];
 
-    final respostas = [
-      'Azul',
-      'Vermelho',
-      'Preto',
-    ];
+    List<Widget> respostas = [];
+
+    for(var textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
+      respostas.add(Resposta(textoResp, _responder));
+    }
 
     // esta retornando uma nova instancia da classe "MaterialApp"
     return MaterialApp(
@@ -51,9 +50,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-            Resposta('Resposta 1', _responder),
-            Resposta('Resposta 2', _responder),
-            Resposta('Resposta 3', _responder),
+            ...respostas,
           ],
         ),
       ),
