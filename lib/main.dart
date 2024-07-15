@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'questao.dart';
+import 'resposta.dart';
 
 // esse eh o topo da arvore de componentes no flutter, todos os widgets estao abaixo do "PerguntaApp"
 // main() {
@@ -25,6 +26,12 @@ class _PerguntaAppState extends State<PerguntaApp> {
       'Qual eh o seu animal favorito?',
     ];
 
+    final respostas = [
+      'Azul',
+      'Vermelho',
+      'Preto',
+    ];
+
     // esta retornando uma nova instancia da classe "MaterialApp"
     return MaterialApp(
       home: Scaffold(
@@ -34,18 +41,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]),
-            ElevatedButton(
-              onPressed: _responder,
-              child: Text('Resposta 1'),
-            ),
-            ElevatedButton(
-              onPressed: _responder,
-              child: Text('Resposta 2'),
-            ),
-            ElevatedButton(
-              onPressed: _responder,
-              child: Text('Resposta 3'),
-            ),
+            Resposta('Resposta 1'),
+            Resposta('Resposta 2'),
+            Resposta('Resposta 3'),
           ],
         ),
       ),
