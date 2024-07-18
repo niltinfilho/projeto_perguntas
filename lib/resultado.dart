@@ -7,6 +7,7 @@ class Resultado extends StatelessWidget {
     return Text(
         'Parabens!',
         style: TextStyle(fontSize: 28),
+
     );
   }
 }

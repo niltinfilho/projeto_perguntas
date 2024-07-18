@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'questao.dart';
-import 'resposta.dart';
+import 'questionario.dart';
 import 'resultado.dart';
 
 // esse eh o topo da arvore de componentes no flutter, todos os widgets estao abaixo do "PerguntaApp"
@@ -27,6 +26,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
       }
     ];
 
+  bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
+  }
+
   void _responder() {
     if(temPerguntaSelecionada) {
       setState(() {
@@ -35,31 +38,20 @@ class _PerguntaAppState extends State<PerguntaApp> {
     }
   }
 
-  bool get temPerguntaSelecionada {
-    return _perguntaSelecionada < _perguntas.length;
-  }
-
   @override
-  // a funcao "build" recebe um parametro e retorna um widget
   Widget build(BuildContext context) {
     
-    List<String> respostas = temPerguntaSelecionada
-      ? _perguntas[_perguntaSelecionada].cast()['respostas']
-      : [];
-
-    // esta retornando uma nova instancia da classe "MaterialApp"
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perguntas'),
         ),
         body: temPerguntaSelecionada 
-          ? Column(
-            children: [
-              Questao(_perguntas[_perguntaSelecionada]['texto'].toString()),
-              ...respostas.map((t) => Resposta(t, _responder)),
-            ],
-          ) 
+          ? Questionario(
+            perguntas: _perguntas,
+            perguntaSelecionada: _perguntaSelecionada,
+            responder: _responder
+          )
           : Center(
             child: Resultado()
           )
@@ -68,7 +60,6 @@ class _PerguntaAppState extends State<PerguntaApp> {
   }
 }
 
-// a classe "PerguntaApp" herda a classe "StatelessWidget", ou seja, possui essas caracteristicas
 class PerguntaApp extends StatefulWidget {
   _PerguntaAppState createState() {
     return _PerguntaAppState();
