@@ -72,7 +72,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
             responder: _responder
           )
           : Center(
-            child: Resultado()
+            child: Resultado(_pontuacaoTotal)
           )
       ),
     );
