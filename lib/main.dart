@@ -10,33 +10,34 @@ main() => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
 
   final List<Map<String, Object>> _perguntas = const [
       {
         'texto': 'Qual eh a sua cor favorita?',
         'respostas': [
-          {'texto': 'Preto', 'nota': 10}, 
-          {'texto': 'Vermelho', 'nota': 5}, 
-          {'texto': 'Verde', 'nota': 3}, 
-          {'texto': 'Branco', 'nota': 6},
+          {'texto': 'Preto', 'pontuacao': 10}, 
+          {'texto': 'Vermelho', 'pontuacao': 5}, 
+          {'texto': 'Verde', 'pontuacao': 3}, 
+          {'texto': 'Branco', 'pontuacao': 6},
         ],
       },
       {
         'texto': 'Qual eh o seu animal favorito?',
         'respostas': [
-          {'texto': 'Zebra', 'nota': 1}, 
-          {'texto': 'Canguru', 'nota': 5}, 
-          {'texto': 'Pantera', 'nota': 7}, 
-          {'texto': 'Macaco', 'nota': 10},
+          {'texto': 'Zebra', 'pontuacao': 1}, 
+          {'texto': 'Canguru', 'pontuacao': 5}, 
+          {'texto': 'Pantera', 'pontuacao': 7}, 
+          {'texto': 'Macaco', 'pontuacao': 10},
         ],
       },
       {
         'texto': 'Qual eh o seu instrutor favorito?',
         'respostas': [
-          {'texto': 'Maria', 'nota': 8}, 
-          {'texto': 'Pedro', 'nota': 7}, 
-          {'texto': 'Leo', 'nota': 1}, 
-          {'texto': 'DudinhaMeuAmor', 'nota': 10},
+          {'texto': 'Maria', 'pontuacao': 8}, 
+          {'texto': 'Pedro', 'pontuacao': 7}, 
+          {'texto': 'Leo', 'pontuacao': 1}, 
+          {'texto': 'DudinhaMeuAmor', 'pontuacao': 10},
         ],
       }
     ];
@@ -45,12 +46,15 @@ class _PerguntaAppState extends State<PerguntaApp> {
     return _perguntaSelecionada < _perguntas.length;
   }
 
-  void _responder() {
+  void _responder(int pontuacao) {
     if(temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
+
+    print(_pontuacaoTotal);
   }
 
   @override
